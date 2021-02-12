@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
             second = second - 1
             if (second <= 10) {
                 timerTextView.setTextColor(Color.RED)
+            } else {
+                timerTextView.setTextColor(Color.BLACK)
             }
             timerTextView.text = second.toString()
         }
@@ -57,22 +59,22 @@ class MainActivity : AppCompatActivity() {
 
         player1Button.setOnClickListener {
             playerOneCount += 1
-            player1Text.text = playerOneCount.toString()
+            displayNumbers()
         }
 
         player2Button.setOnClickListener {
             playerTwoCount += 1
-            player2Text.text = playerTwoCount.toString()
+            displayNumbers()
         }
 
         player1AttackButton.setOnClickListener {
             playerTwoCount -= 1
-            player2Text.text = playerTwoCount.toString()
+            displayNumbers()
         }
 
         player2AttackButton.setOnClickListener {
             playerOneCount -= 1
-            player1Text.text = playerOneCount.toString()
+            displayNumbers()
         }
     }
 
@@ -98,11 +100,39 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("OK") { _, _ ->
                 playerOneCount = 0
                 playerTwoCount = 0
-                player1Text.text = playerOneCount.toString()
-                player2Text.text = playerTwoCount.toString()
+                displayNumbers()
                 startButton.isEnabled = true
                 startButton.visibility = View.VISIBLE
             }
             .show()
+    }
+
+    private fun displayNumbers() {
+        player1Text.text = playerOneCount.toString()
+        player2Text.text = playerTwoCount.toString()
+
+        when {
+            playerOneCount > 50 -> {
+                player1Text.setTextColor(Color.RED)
+            }
+            playerOneCount < 0 -> {
+                player1Text.setTextColor(Color.BLUE)
+            }
+            else -> {
+                player1Text.setTextColor(Color.BLACK)
+            }
+        }
+
+        when {
+            playerTwoCount > 50 -> {
+                player2Text.setTextColor(Color.RED)
+            }
+            playerTwoCount < 0 -> {
+                player2Text.setTextColor(Color.BLUE)
+            }
+            else -> {
+                player2Text.setTextColor(Color.BLACK)
+            }
+        }
     }
 }

@@ -121,6 +121,7 @@
         android:id="@+id/startButton"
         android:layout_width="175dp"
         android:layout_height="100dp"
+        android:background="@drawable/background_circle"
         android:rotation="-90"
         android:text="START"
         android:textColor="#FFFFFF"
