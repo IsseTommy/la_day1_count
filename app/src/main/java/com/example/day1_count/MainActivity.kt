@@ -70,11 +70,15 @@ class MainActivity : AppCompatActivity() {
         player1AttackButton.setOnClickListener {
             playerTwoCount -= 1
             displayNumbers()
+            attackView.rotation = 0F
+            attackView.playAnimation()
         }
 
         player2AttackButton.setOnClickListener {
             playerOneCount -= 1
             displayNumbers()
+            attackView.rotation = 180F
+            attackView.playAnimation()
         }
     }
 
