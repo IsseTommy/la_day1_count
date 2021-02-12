@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         player1AttackButton.setOnClickListener {
             playerTwoCount -= 1
             displayNumbers()
+            attackView.visibility = View.VISIBLE
             attackView.rotation = 0F
             attackView.playAnimation()
         }
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         player2AttackButton.setOnClickListener {
             playerOneCount -= 1
             displayNumbers()
+            attackView.visibility = View.VISIBLE
             attackView.rotation = 180F
             attackView.playAnimation()
         }
