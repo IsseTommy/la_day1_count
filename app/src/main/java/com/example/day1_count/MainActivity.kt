@@ -1,12 +1,15 @@
 package com.example.day1_count
 
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -38,35 +41,44 @@ class MainActivity : AppCompatActivity() {
     val attackTimerOne: CountDownTimer = object : CountDownTimer(5000, 1000) {
         override fun onTick(p0: Long) {}
 
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onFinish() {
             player1AttackButton.isEnabled = true
+            player1AttackButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.attack_active))
         }
     }
 
     val attackedTimerOne: CountDownTimer = object : CountDownTimer(2000, 1000) {
         override fun onTick(p0: Long) {}
 
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onFinish() {
             player1Button.isEnabled = true
+            player1Button.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.add_one_active))
         }
     }
 
     val attackTimerTwo: CountDownTimer = object : CountDownTimer(5000, 1000) {
         override fun onTick(p0: Long) {}
 
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onFinish() {
             player2AttackButton.isEnabled = true
+            player2AttackButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.attack_active))
         }
     }
 
     val attackedTimerTwo: CountDownTimer = object : CountDownTimer(2000, 1000) {
         override fun onTick(p0: Long) {}
 
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onFinish() {
             player2Button.isEnabled = true
+            player2Button.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.add_two_active))
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -147,7 +159,9 @@ class MainActivity : AppCompatActivity() {
             attackTimerOne.start()
             attackedTimerTwo.start()
             player2Button.isEnabled = false
+            player2Button.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.inactive))
             player1AttackButton.isEnabled = false
+            player1AttackButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.inactive))
         }
 
         player2AttackButton.setOnClickListener {
@@ -157,7 +171,9 @@ class MainActivity : AppCompatActivity() {
             attackTimerTwo.start()
             attackedTimerOne.start()
             player1Button.isEnabled = false
+            player1Button.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.inactive))
             player2AttackButton.isEnabled = false
+            player2AttackButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.inactive))
         }
     }
 

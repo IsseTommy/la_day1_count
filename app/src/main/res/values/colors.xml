@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="attack_active">#8b008b</color>
+    <color name="add_one_active">#191970</color>
+    <color name="add_two_active">#dc143c</color>
+    <color name="inactive">#B4B4B4</color>
 </resources>

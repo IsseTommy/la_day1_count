@@ -33,7 +33,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:backgroundTint="#8b008b" />
+                app:backgroundTint="@color/attack_active" />
 
             <Button
                 android:id="@+id/player2Button"
@@ -48,7 +48,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="50sp"
                 android:textStyle="bold"
-                app:backgroundTint="#dc143c" />
+                app:backgroundTint="@color/add_two_active" />
         </LinearLayout>
 
         <TextView
@@ -99,22 +99,22 @@
                 android:textColor="#FFFFFF"
                 android:textSize="50sp"
                 android:textStyle="bold"
-                app:backgroundTint="#191970" />
+                app:backgroundTint="@color/add_one_active" />
 
             <Button
                 android:id="@+id/player1AttackButton"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
+                android:layout_weight="1"
                 android:background="@drawable/background_circle"
                 android:enabled="false"
                 android:text="Atatck"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:backgroundTint="#8b008b" />
+                app:backgroundTint="@color/attack_active" />
         </LinearLayout>
     </LinearLayout>
 
