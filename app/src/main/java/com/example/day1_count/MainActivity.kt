@@ -35,6 +35,38 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    val attackTimerOne: CountDownTimer = object : CountDownTimer(5000, 1000) {
+        override fun onTick(p0: Long) {}
+
+        override fun onFinish() {
+            player1AttackButton.isEnabled = true
+        }
+    }
+
+    val attackedTimerOne: CountDownTimer = object : CountDownTimer(2000, 1000) {
+        override fun onTick(p0: Long) {}
+
+        override fun onFinish() {
+            player1Button.isEnabled = true
+        }
+    }
+
+    val attackTimerTwo: CountDownTimer = object : CountDownTimer(5000, 1000) {
+        override fun onTick(p0: Long) {}
+
+        override fun onFinish() {
+            player2AttackButton.isEnabled = true
+        }
+    }
+
+    val attackedTimerTwo: CountDownTimer = object : CountDownTimer(2000, 1000) {
+        override fun onTick(p0: Long) {}
+
+        override fun onFinish() {
+            player2Button.isEnabled = true
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -109,19 +141,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         player1AttackButton.setOnClickListener {
-            playerTwoCount -= 1
-            displayNumbers()
             attackView.visibility = View.VISIBLE
             attackView.rotation = 0F
             attackView.playAnimation()
+            attackTimerOne.start()
+            attackedTimerTwo.start()
+            player2Button.isEnabled = false
+            player1AttackButton.isEnabled = false
         }
 
         player2AttackButton.setOnClickListener {
-            playerOneCount -= 1
-            displayNumbers()
             attackView.visibility = View.VISIBLE
             attackView.rotation = 180F
             attackView.playAnimation()
+            attackTimerTwo.start()
+            attackedTimerOne.start()
+            player1Button.isEnabled = false
+            player2AttackButton.isEnabled = false
         }
     }
 

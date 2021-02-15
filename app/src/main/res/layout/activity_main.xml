@@ -105,9 +105,9 @@
                 android:id="@+id/player1AttackButton"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_weight="1"
                 android:background="@drawable/background_circle"
                 android:enabled="false"
                 android:text="Atatck"
@@ -117,6 +117,15 @@
                 app:backgroundTint="#8b008b" />
         </LinearLayout>
     </LinearLayout>
+
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/attack1Lottie"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:visibility="invisible"-->
+<!--        app:lottie_autoPlay="false"-->
+<!--        app:lottie_loop="false"-->
+<!--        app:lottie_rawRes="@raw/no"/>-->
 
     <Button
         android:id="@+id/startButton"
