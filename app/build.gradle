@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "jp.tommy.day1_count"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 4
         versionName "1.1.1"

@@ -41,44 +41,39 @@ class MainActivity : AppCompatActivity() {
     val attackTimerOne: CountDownTimer = object : CountDownTimer(5000, 1000) {
         override fun onTick(p0: Long) {}
 
-        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onFinish() {
             player1AttackButton.isEnabled = true
-            player1AttackButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.attack_active))
+            player1AttackButton.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.attack_active)
         }
     }
 
     val attackedTimerOne: CountDownTimer = object : CountDownTimer(2000, 1000) {
         override fun onTick(p0: Long) {}
 
-        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onFinish() {
             player1Button.isEnabled = true
-            player1Button.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.add_one_active))
+            player1Button.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.add_one_active)
         }
     }
 
     val attackTimerTwo: CountDownTimer = object : CountDownTimer(5000, 1000) {
         override fun onTick(p0: Long) {}
 
-        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onFinish() {
             player2AttackButton.isEnabled = true
-            player2AttackButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.attack_active))
+            player2AttackButton.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.attack_active)
         }
     }
 
     val attackedTimerTwo: CountDownTimer = object : CountDownTimer(2000, 1000) {
         override fun onTick(p0: Long) {}
 
-        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onFinish() {
             player2Button.isEnabled = true
-            player2Button.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.add_two_active))
+            player2Button.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.add_two_active)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -159,9 +154,9 @@ class MainActivity : AppCompatActivity() {
             attackTimerOne.start()
             attackedTimerTwo.start()
             player2Button.isEnabled = false
-            player2Button.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.inactive))
+            player2Button.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.inactive)
             player1AttackButton.isEnabled = false
-            player1AttackButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.inactive))
+            player1AttackButton.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.inactive)
         }
 
         player2AttackButton.setOnClickListener {
@@ -171,9 +166,9 @@ class MainActivity : AppCompatActivity() {
             attackTimerTwo.start()
             attackedTimerOne.start()
             player1Button.isEnabled = false
-            player1Button.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.inactive))
+            player1Button.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.inactive)
             player2AttackButton.isEnabled = false
-            player2AttackButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.inactive))
+            player2AttackButton.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.inactive)
         }
     }
 
@@ -184,14 +179,16 @@ class MainActivity : AppCompatActivity() {
         player2AttackButton.isEnabled = false
         timerLayout.visibility = View.INVISIBLE
 
-        var title: String = ""
-
-        if (playerOneCount < playerTwoCount) {
-            title = "プレイヤー赤の勝利！"
-        } else if (playerOneCount > playerTwoCount) {
-            title = "プレイヤー青の勝利！"
-        } else {
-            title = "引き分け"
+        val title = when {
+            playerOneCount < playerTwoCount -> {
+                "プレイヤー赤の勝利！"
+            }
+            playerOneCount > playerTwoCount -> {
+                "プレイヤー青の勝利！"
+            }
+            else -> {
+                "引き分け"
+            }
         }
 
         AlertDialog.Builder(this)
