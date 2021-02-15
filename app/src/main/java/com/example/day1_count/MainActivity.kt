@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     var playerTwoCount: Int = 0
     var second = 60
 
-    var timer: CountDownTimer = object : CountDownTimer(60000, 1000) {
+    var timer: CountDownTimer = object : CountDownTimer((second * 1000).toLong(), 1000) {
         override fun onFinish() {
             startButton.isVisible = true
             second = 60
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onTick(p0: Long) {
-            second = second - 1
+            second -= 1
             if (second <= 10) {
                 timerTextView.setTextColor(Color.RED)
             } else {
@@ -47,14 +48,54 @@ class MainActivity : AppCompatActivity() {
         timerLayout.visibility = View.INVISIBLE
 
         startButton.setOnClickListener {
-            player1Button.isEnabled = true
-            player2Button.isEnabled = true
-            player1AttackButton.isEnabled = true
-            player2AttackButton.isEnabled = true
-            startButton.isEnabled = false
-            startButton.visibility = View.INVISIBLE
-            timerLayout.visibility = View.VISIBLE
-            timer.start()
+            val strList = arrayOf("15秒","30秒","60秒")
+
+            AlertDialog.Builder(this)
+                    .setTitle("時間を選択してください")
+                    .setItems(strList) { _, which ->
+                        when (which) {
+                            0 -> {
+                                second = 15
+                            }
+                            1 -> {
+                                second = 30
+                            }
+                            2 -> {
+                                second = 60
+                            }
+                            else -> {
+                                Log.e("ERROR", "INVALID NUMBER")
+                            }
+                        }
+                        timer = object : CountDownTimer((second * 1000).toLong(), 1000) {
+                            override fun onFinish() {
+                                startButton.isVisible = true
+                                second = 60
+                                timerTextView.text = second.toString()
+                                finishGame()
+                            }
+
+                            override fun onTick(p0: Long) {
+                                second -= 1
+                                if (second <= 10) {
+                                    timerTextView.setTextColor(Color.RED)
+                                } else {
+                                    timerTextView.setTextColor(Color.BLACK)
+                                }
+                                timerTextView.text = second.toString()
+                            }
+                        }
+                        player1Button.isEnabled = true
+                        player2Button.isEnabled = true
+                        player1AttackButton.isEnabled = true
+                        player2AttackButton.isEnabled = true
+                        startButton.isEnabled = false
+                        startButton.visibility = View.INVISIBLE
+                        timerLayout.visibility = View.VISIBLE
+                        timer.start()
+                    }
+                    .setNegativeButton("キャンセル", null)
+                    .show()
         }
 
         player1Button.setOnClickListener {
