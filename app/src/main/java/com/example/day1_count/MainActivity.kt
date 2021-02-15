@@ -1,5 +1,7 @@
 package com.example.day1_count
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +9,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -41,39 +44,44 @@ class MainActivity : AppCompatActivity() {
     val attackTimerOne: CountDownTimer = object : CountDownTimer(5000, 1000) {
         override fun onTick(p0: Long) {}
 
+        @RequiresApi(Build.VERSION_CODES.M)
         override fun onFinish() {
             player1AttackButton.isEnabled = true
-            player1AttackButton.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.attack_active)
+            player1AttackButton.backgroundTintList = getColorStateList(R.color.attack_active)
         }
     }
 
     val attackedTimerOne: CountDownTimer = object : CountDownTimer(2000, 1000) {
         override fun onTick(p0: Long) {}
 
+        @RequiresApi(Build.VERSION_CODES.M)
         override fun onFinish() {
             player1Button.isEnabled = true
-            player1Button.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.add_one_active)
+            player1Button.backgroundTintList = getColorStateList(R.color.add_one_active)
         }
     }
 
     val attackTimerTwo: CountDownTimer = object : CountDownTimer(5000, 1000) {
         override fun onTick(p0: Long) {}
 
+        @RequiresApi(Build.VERSION_CODES.M)
         override fun onFinish() {
             player2AttackButton.isEnabled = true
-            player2AttackButton.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.attack_active)
+            player2AttackButton.backgroundTintList = getColorStateList(R.color.attack_active)
         }
     }
 
     val attackedTimerTwo: CountDownTimer = object : CountDownTimer(2000, 1000) {
         override fun onTick(p0: Long) {}
 
+        @RequiresApi(Build.VERSION_CODES.M)
         override fun onFinish() {
             player2Button.isEnabled = true
-            player2Button.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.add_two_active)
+            player2Button.backgroundTintList = getColorStateList(R.color.add_two_active)
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -154,9 +162,9 @@ class MainActivity : AppCompatActivity() {
             attackTimerOne.start()
             attackedTimerTwo.start()
             player2Button.isEnabled = false
-            player2Button.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.inactive)
+            player2Button.backgroundTintList = getColorStateList(R.color.inactive)
             player1AttackButton.isEnabled = false
-            player1AttackButton.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.inactive)
+            player1AttackButton.backgroundTintList = getColorStateList(R.color.inactive)
         }
 
         player2AttackButton.setOnClickListener {
@@ -166,10 +174,22 @@ class MainActivity : AppCompatActivity() {
             attackTimerTwo.start()
             attackedTimerOne.start()
             player1Button.isEnabled = false
-            player1Button.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.inactive)
+            player1Button.backgroundTintList = getColorStateList(R.color.inactive)
             player2AttackButton.isEnabled = false
-            player2AttackButton.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.inactive)
+            player2AttackButton.backgroundTintList = getColorStateList(R.color.inactive)
         }
+    }
+
+    /*
+    fun Context.getColorStateListCompat(@ColorRes id: Int): ColorStateList? {
+         return ContextCompat.getColorStateList(this, id)
+    }
+
+     player1Button.backgroundTintList = getColorStateListCompat(R.color.inactive)
+    */
+
+    fun Context.getColorStateListCompat(@ColorRes id: Int): ColorStateList? {
+        return ContextCompat.getColorStateList(this, id)
     }
 
     fun finishGame() {
